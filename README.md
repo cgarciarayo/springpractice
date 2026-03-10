@@ -127,6 +127,15 @@ Para comprobar que los endpoints funcionan correctamente he utilizado **Postman*
 También he revisado en la consola de la aplicación que los datos se reciban y se procesen correctamente.
 
 ---
+## Endpoints de la aplicación
+
+| Método | Endpoint | Descripción |
+|------|------|------|
+| GET | /person | Devuelve los datos de una persona en formato JSON |
+| POST | /envioFormulario | Recibe los datos de una persona y los guarda en memoria |
+| GET | /personByDni?dni=XXXXXXXX | Devuelve los datos de una persona según su DNI |
+| PUT | /personByDni?dni=XXXXXXXX | Modifica los datos de una persona existente |
+---
 
 ## Ejecución del proyecto
 
