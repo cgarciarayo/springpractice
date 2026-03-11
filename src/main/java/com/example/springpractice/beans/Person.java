@@ -1,30 +1,66 @@
 package com.example.springpractice.beans;
 
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+
 /**
  * En esta clase defino el bean Person.
- * Aqui guardo los datos de una persona y actualizo automaticamente
- * el nombre completo cuando modifico sus datos.
+ * Aqui guardo los datos de una persona y genero automaticamente
+ * el nombre completo cuando se crean o modifican sus datos.
  */
 public class Person {
 
+    /**
+     * DNI de la persona.
+     */
+    @NotNull(message = "El DNI no puede ser nulo")
+    @Size(min = 9, max = 9, message = "El DNI debe tener 9 caracteres")
     private String dni;
+
+    /**
+     * Nombre de la persona.
+     */
+    @NotNull(message = "El nombre es obligatorio")
+    @Size(min = 2, max = 30, message = "El nombre debe tener entre 2 y 30 caracteres")
     private String name;
+
+    /**
+     * Primer apellido.
+     */
+    @NotNull(message = "El primer apellido es obligatorio")
     private String firstSurname;
+
+    /**
+     * Segundo apellido.
+     */
+    @NotNull(message = "El segundo apellido es obligatorio")
     private String secondSurname;
-    private String fullName;
+
+    /**
+     * Fecha de nacimiento.
+     */
+    @NotNull(message = "La fecha de nacimiento es obligatoria")
     private String birthDate;
+
+    /**
+     * Sexo de la persona.
+     */
+    @NotNull(message = "El sexo es obligatorio")
     private String sex;
 
     /**
-     * En este constructor vacio permito que Spring pueda crear
-     * objetos Person cuando reciba datos en el cuerpo de la peticion.
+     * Nombre completo de la persona.
+     */
+    private String fullName;
+
+    /**
+     * Constructor vacio necesario para que Spring pueda crear el objeto.
      */
     public Person() {
     }
 
     /**
      * En este constructor recibo los datos sin DNI.
-     * Lo uso para los ejercicios anteriores.
      */
     public Person(String name, String firstSurname, String secondSurname, String birthDate, String sex) {
         this.name = name;
@@ -32,12 +68,11 @@ public class Person {
         this.secondSurname = secondSurname;
         this.birthDate = birthDate;
         this.sex = sex;
-        updateFullName();
+        this.fullName = name + " " + firstSurname + " " + secondSurname;
     }
 
     /**
-     * En este constructor recibo todos los datos de la persona,
-     * incluido el DNI.
+     * En este constructor recibo todos los datos incluyendo el DNI.
      */
     public Person(String dni, String name, String firstSurname, String secondSurname, String birthDate, String sex) {
         this.dni = dni;
@@ -46,108 +81,69 @@ public class Person {
         this.secondSurname = secondSurname;
         this.birthDate = birthDate;
         this.sex = sex;
-        updateFullName();
-    }
-
-    /**
-     * En este metodo actualizo el nombre completo a partir
-     * del nombre y los apellidos.
-     */
-    private void updateFullName() {
         this.fullName = name + " " + firstSurname + " " + secondSurname;
     }
 
-    /**
-     * Devuelvo el DNI.
-     */
     public String getDni() {
         return dni;
     }
 
-    /**
-     * Modifico el DNI.
-     */
     public void setDni(String dni) {
         this.dni = dni;
     }
 
-    /**
-     * Devuelvo el nombre.
-     */
     public String getName() {
         return name;
     }
 
-    /**
-     * Modifico el nombre y actualizo el nombre completo.
-     */
     public void setName(String name) {
         this.name = name;
         updateFullName();
     }
 
-    /**
-     * Devuelvo el primer apellido.
-     */
     public String getFirstSurname() {
         return firstSurname;
     }
 
-    /**
-     * Modifico el primer apellido y actualizo el nombre completo.
-     */
     public void setFirstSurname(String firstSurname) {
         this.firstSurname = firstSurname;
         updateFullName();
     }
 
-    /**
-     * Devuelvo el segundo apellido.
-     */
     public String getSecondSurname() {
         return secondSurname;
     }
 
-    /**
-     * Modifico el segundo apellido y actualizo el nombre completo.
-     */
     public void setSecondSurname(String secondSurname) {
         this.secondSurname = secondSurname;
         updateFullName();
     }
 
-    /**
-     * Devuelvo el nombre completo.
-     */
+    public String getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(String birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
+
     public String getFullName() {
         return fullName;
     }
 
     /**
-     * Devuelvo la fecha de nacimiento.
+     * En este metodo actualizo automaticamente el nombre completo
+     * cuando se modifica alguno de los campos del nombre.
      */
-    public String getBirthDate() {
-        return birthDate;
-    }
-
-    /**
-     * Modifico la fecha de nacimiento.
-     */
-    public void setBirthDate(String birthDate) {
-        this.birthDate = birthDate;
-    }
-
-    /**
-     * Devuelvo el sexo.
-     */
-    public String getSex() {
-        return sex;
-    }
-
-    /**
-     * Modifico el sexo.
-     */
-    public void setSex(String sex) {
-        this.sex = sex;
+    private void updateFullName() {
+        this.fullName = name + " " + firstSurname + " " + secondSurname;
     }
 }
