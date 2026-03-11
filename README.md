@@ -160,6 +160,6 @@ La documentación se ha generado con Maven usando:
 
 mvn javadoc:javadoc
 
-Después se puede consultar en la carpeta:
+Se puede consultar en la carpeta:
 
 target/site/apidocs/index.html
