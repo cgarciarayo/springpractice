@@ -33,15 +33,15 @@ public class PersonController {
     public PersonController() {
         persons = new Persons();
 
-        persons.getPersonList().add(new Person("11111111A", "Ana", "Lopez", "Garcia", "1990-01-10", "Female"));
-        persons.getPersonList().add(new Person("22222222B", "Luis", "Perez", "Martin", "1988-03-22", "Male"));
-        persons.getPersonList().add(new Person("33333333C", "Marta", "Sanchez", "Ruiz", "1995-07-14", "Female"));
-        persons.getPersonList().add(new Person("44444444D", "Carlos", "Fernandez", "Diaz", "1992-11-05", "Male"));
-        persons.getPersonList().add(new Person("55555555E", "Elena", "Romero", "Gil", "1991-09-18", "Female"));
-        persons.getPersonList().add(new Person("66666666F", "Javier", "Navarro", "Torres", "1987-02-27", "Male"));
-        persons.getPersonList().add(new Person("77777777G", "Laura", "Ortega", "Moreno", "1996-06-30", "Female"));
-        persons.getPersonList().add(new Person("88888888H", "David", "Castro", "Vega", "1993-04-12", "Male"));
-        persons.getPersonList().add(new Person("99999999I", "Sara", "Molina", "Herrera", "1994-08-08", "Female"));
+        persons.getPersonList().add(new Person("53483476L", "Ana", "Lopez", "Garcia", "1990-01-10", "Female"));
+        persons.getPersonList().add(new Person("76387538B", "Luis", "Perez", "Martin", "1988-03-22", "Male"));
+        persons.getPersonList().add(new Person("73813576F", "Marta", "Sanchez", "Ruiz", "1995-07-14", "Female"));
+        persons.getPersonList().add(new Person("35174316S", "Carlos", "Fernandez", "Diaz", "1992-11-05", "Male"));
+        persons.getPersonList().add(new Person("31747367E", "Elena", "Romero", "Gil", "1991-09-18", "Female"));
+        persons.getPersonList().add(new Person("87426766T", "Javier", "Navarro", "Torres", "1987-02-27", "Male"));
+        persons.getPersonList().add(new Person("98765466J", "Laura", "Ortega", "Moreno", "1996-06-30", "Female"));
+        persons.getPersonList().add(new Person("87364659L", "David", "Castro", "Vega", "1993-04-12", "Male"));
+        persons.getPersonList().add(new Person("78145637H", "Sara", "Molina", "Herrera", "1994-08-08", "Female"));
         persons.getPersonList().add(new Person("12312312E", "Carmen", "Garcia", "Rayo", "1991-01-26", "Female"));
     }
 
