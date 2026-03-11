@@ -189,4 +189,33 @@ encontrada correctamente.
 
 Esto permite seguir fácilmente lo que está ocurriendo en la aplicación
 y ayuda a comprobar que los endpoints funcionan correctamente.
+---
+
+## Ejercicio opcional – Validaciones mediante anotaciones
+
+En este ejercicio he añadido validaciones a los datos de la clase Person
+utilizando anotaciones de validación de Jakarta.
+
+Estas validaciones permiten comprobar automáticamente que los datos
+recibidos en las peticiones cumplen ciertas condiciones antes de ser
+procesados por la API.
+
+Para ello he utilizado anotaciones como:
+
+@NotNull
+@Size
+@Email
+
+Además, en el controlador se ha utilizado la anotación:
+
+@Valid
+
+para que Spring valide automáticamente los datos recibidos en el cuerpo
+de la petición.
+
+Si los datos enviados cumplen las validaciones, la petición se procesa
+correctamente.
+
+En caso contrario, Spring devuelve un error indicando que los datos
+enviados no son válidos.
 
