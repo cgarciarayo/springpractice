@@ -151,3 +151,15 @@ SpringpracticeApplication.java
 http://localhost:8082
 
 ---
+## Ejercicio opcional – Documentación JavaDoc
+
+En este ejercicio he añadido comentarios JavaDoc en las clases del proyecto
+para generar documentación automática.
+
+La documentación se ha generado con Maven usando:
+
+mvn javadoc:javadoc
+
+Después se puede consultar en la carpeta:
+
+target/site/apidocs/index.html
