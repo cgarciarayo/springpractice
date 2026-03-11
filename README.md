@@ -163,3 +163,30 @@ mvn javadoc:javadoc
 Se puede consultar en la carpeta:
 
 target/site/apidocs/index.html
+---
+
+## Ejercicio opcional – Logs en consola
+
+En este ejercicio he añadido mensajes en la consola para mostrar información
+sobre las acciones que se realizan cuando se utilizan los endpoints de la API.
+
+Para ello he utilizado mensajes mediante:
+
+System.out.println()
+
+dentro de los métodos del controlador.
+
+De esta forma, cada vez que un usuario realiza una petición a la API,
+se muestra en la consola un mensaje indicando qué acción se ha ejecutado.
+
+Por ejemplo, cuando se realiza una petición para obtener una persona por DNI
+se muestra un mensaje como:
+
+El usuario [client] ha realizado la acción: [GET /personByDni]
+
+Además, también se muestra un mensaje indicando si la persona ha sido
+encontrada correctamente.
+
+Esto permite seguir fácilmente lo que está ocurriendo en la aplicación
+y ayuda a comprobar que los endpoints funcionan correctamente.
+
