@@ -151,6 +151,7 @@ SpringpracticeApplication.java
 http://localhost:8082
 
 ---
+
 ## Ejercicio opcional – Documentación JavaDoc
 
 En este ejercicio he añadido comentarios JavaDoc en las clases del proyecto
@@ -163,6 +164,7 @@ mvn javadoc:javadoc
 Se puede consultar en la carpeta:
 
 target/site/apidocs/index.html
+
 ---
 
 ## Ejercicio opcional – Logs en consola
@@ -189,6 +191,7 @@ encontrada correctamente.
 
 Esto permite seguir fácilmente lo que está ocurriendo en la aplicación
 y ayuda a comprobar que los endpoints funcionan correctamente.
+
 ---
 
 ## Ejercicio opcional – Validaciones mediante anotaciones
