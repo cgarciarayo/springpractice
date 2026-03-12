@@ -151,6 +151,7 @@ SpringpracticeApplication.java
 http://localhost:8082
 
 ---
+
 ## Ejercicio opcional – Documentación JavaDoc
 
 En este ejercicio he añadido comentarios JavaDoc en las clases del proyecto
@@ -163,3 +164,82 @@ mvn javadoc:javadoc
 Se puede consultar en la carpeta:
 
 target/site/apidocs/index.html
+
+---
+
+## Ejercicio opcional – Logs en consola
+
+En este ejercicio he añadido mensajes en la consola para mostrar información
+sobre las acciones que se realizan cuando se utilizan los endpoints de la API.
+
+Para ello he utilizado mensajes mediante:
+
+System.out.println()
+
+dentro de los métodos del controlador.
+
+De esta forma, cada vez que un usuario realiza una petición a la API,
+se muestra en la consola un mensaje indicando qué acción se ha ejecutado.
+
+Por ejemplo, cuando se realiza una petición para obtener una persona por DNI
+se muestra un mensaje como:
+
+El usuario [client] ha realizado la acción: [GET /personByDni]
+
+Además, también se muestra un mensaje indicando si la persona ha sido
+encontrada correctamente.
+
+Esto permite seguir fácilmente lo que está ocurriendo en la aplicación
+y ayuda a comprobar que los endpoints funcionan correctamente.
+
+---
+
+## Ejercicio opcional – Validaciones mediante anotaciones
+
+En este ejercicio he añadido validaciones a los datos de la clase Person
+utilizando anotaciones de validación de Jakarta.
+
+Estas validaciones permiten comprobar automáticamente que los datos
+recibidos en las peticiones cumplen ciertas condiciones antes de ser
+procesados por la API.
+
+Para ello he utilizado anotaciones como:
+
+@NotNull
+@Size
+@Email
+
+Además, en el controlador se ha utilizado la anotación:
+
+@Valid
+
+para que Spring valide automáticamente los datos recibidos en el cuerpo
+de la petición.
+
+Si los datos enviados cumplen las validaciones, la petición se procesa
+correctamente.
+
+En caso contrario, Spring devuelve un error indicando que los datos
+enviados no son válidos.
+
+---
+
+## Ejercicio opcional – Manejador global de excepciones
+
+En este ejercicio he añadido un manejador global de excepciones utilizando
+@ControllerAdvice y @ExceptionHandler.
+
+El objetivo ha sido controlar los errores de la API y devolver una respuesta
+JSON más clara cuando se produce una excepción en la aplicación.
+
+La respuesta de error incluye:
+
+- código de error
+- mensaje descriptivo
+- marca de tiempo
+
+De esta forma, cuando se produce un error en una petición, el sistema devuelve
+un JSON con la información del problema en lugar de mostrar un error interno
+de Spring.
+
+
