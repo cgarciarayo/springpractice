@@ -1,5 +1,6 @@
 package com.example.springpractice.controllers;
 
+import com.example.springpractice.exceptions.PersonNotFoundException;
 import com.example.springpractice.beans.Person;
 import com.example.springpractice.beans.Persons;
 import jakarta.validation.Valid;
@@ -118,7 +119,7 @@ public class PersonController {
         }
 
         System.out.println("No se ha encontrado ninguna persona con DNI [" + dni + "]");
-        return null;
+        throw new PersonNotFoundException("No se ha encontrado ninguna persona con el DNI " + dni);
     }
 
     /**
@@ -149,6 +150,6 @@ public class PersonController {
         }
 
         System.out.println("No se ha podido actualizar ninguna persona con DNI [" + dni + "]");
-        return null;
+        throw new PersonNotFoundException("No se ha podido actualizar ninguna persona con el DNI " + dni);
     }
 }
