@@ -222,3 +222,24 @@ correctamente.
 En caso contrario, Spring devuelve un error indicando que los datos
 enviados no son válidos.
 
+---
+
+## Ejercicio opcional – Manejador global de excepciones
+
+En este ejercicio he añadido un manejador global de excepciones utilizando
+@ControllerAdvice y @ExceptionHandler.
+
+El objetivo ha sido controlar los errores de la API y devolver una respuesta
+JSON más clara cuando se produce una excepción en la aplicación.
+
+La respuesta de error incluye:
+
+- código de error
+- mensaje descriptivo
+- marca de tiempo
+
+De esta forma, cuando se produce un error en una petición, el sistema devuelve
+un JSON con la información del problema en lugar de mostrar un error interno
+de Spring.
+
+
