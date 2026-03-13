@@ -1,0 +1,12 @@
+package com.example.ccode;
+
+
+public void employeeMethod(Employee employee) {
+    // Some actions
+    double monthlySalary = getMonthlySalary(employee);
+    // Continue processing
+}
+
+public double getMonthlySalary(Employee employee) {
+    return (employee.getYearlySalary() + employee.getAwards())/12;
+}
