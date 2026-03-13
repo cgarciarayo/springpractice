@@ -1,0 +1,57 @@
+package com.example.ccode;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+public class EuromillonesGenerator {
+
+    private static final int MAIN_NUMBERS_COUNT = 5;
+    private static final int STAR_NUMBERS_COUNT = 2;
+
+    private static final int MAX_MAIN_NUMBER = 50;
+    private static final int MAX_STAR_NUMBER = 12;
+
+    public static void main(String[] args) {
+
+        List<Integer> mainNumbers = generateNumbers(MAIN_NUMBERS_COUNT, MAX_MAIN_NUMBER);
+        List<Integer> starNumbers = generateNumbers(STAR_NUMBERS_COUNT, MAX_STAR_NUMBER);
+
+        printBet(mainNumbers, starNumbers);
+    }
+
+    /**
+     * Genero una lista de numeros aleatorios sin repetir dentro de un rango
+     */
+    private static List<Integer> generateNumbers(int quantity, int maxNumber) {
+
+        List<Integer> numbers = createNumberPool(maxNumber);
+
+        Collections.shuffle(numbers);
+
+        return numbers.subList(0, quantity);
+    }
+
+    /**
+     * Creo una lista con todos los numeros posibles dentro del rango
+     */
+    private static List<Integer> createNumberPool(int maxNumber) {
+
+        List<Integer> pool = new ArrayList<>();
+
+        for (int i = 1; i <= maxNumber; i++) {
+            pool.add(i);
+        }
+
+        return pool;
+    }
+
+    /**
+     * Muestro la apuesta generada
+     */
+    private static void printBet(List<Integer> mainNumbers, List<Integer> starNumbers) {
+
+        System.out.println("Main numbers: " + mainNumbers);
+        System.out.println("Stars: " + starNumbers);
+    }
+}
