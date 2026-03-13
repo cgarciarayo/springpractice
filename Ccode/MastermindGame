@@ -1,0 +1,228 @@
+package com.example.ccode;
+
+import java.util.Random;
+import java.util.Scanner;
+
+public class MastermindGame {
+
+    private static final int SEQUENCE_LENGTH = 4;
+    private static final int MAX_ATTEMPTS = 10;
+
+    private static final String BLUE = "Azul";
+    private static final String RED = "Rojo";
+    private static final String GREEN = "Verde";
+    private static final String YELLOW = "Amarillo";
+
+    private static final String[] AVAILABLE_COLORS = {BLUE, RED, GREEN, YELLOW};
+
+    public static void main(String[] args) {
+
+        String[] secretSequence = generateSecretSequence();
+        Scanner scanner = new Scanner(System.in);
+
+        playGame(scanner, secretSequence);
+
+        scanner.close();
+    }
+
+    /**
+     * Genero la secuencia secreta de colores
+     */
+    private static String[] generateSecretSequence() {
+
+        String[] sequence = new String[SEQUENCE_LENGTH];
+        Random random = new Random();
+
+        for (int i = 0; i < SEQUENCE_LENGTH; i++) {
+            sequence[i] = AVAILABLE_COLORS[random.nextInt(AVAILABLE_COLORS.length)];
+        }
+
+        return sequence;
+    }
+
+    /**
+     * Desarrollo la partida completa
+     */
+    private static void playGame(Scanner scanner, String[] secretSequence) {
+
+        boolean guessed = false;
+        int attempt = 1;
+
+        while (attempt <= MAX_ATTEMPTS && !guessed) {
+
+            System.out.println("Intento " + attempt + " de " + MAX_ATTEMPTS);
+            String[] playerSequence = readPlayerSequence(scanner);
+
+            int whiteBalls = countWhiteBalls(secretSequence, playerSequence);
+            int blackBalls = countBlackBalls(secretSequence, playerSequence);
+
+            showResult(whiteBalls, blackBalls);
+
+            guessed = hasWon(whiteBalls);
+
+            if (guessed) {
+                System.out.println("Has ganado en el intento " + attempt);
+            }
+
+            attempt++;
+            System.out.println();
+        }
+
+        if (!guessed) {
+            System.out.println("Has perdido. La secuencia correcta era:");
+            showSequence(secretSequence);
+        }
+    }
+
+    /**
+     * Leo la secuencia introducida por el jugador
+     */
+    private static String[] readPlayerSequence(Scanner scanner) {
+
+        String[] sequence = new String[SEQUENCE_LENGTH];
+
+        for (int i = 0; i < SEQUENCE_LENGTH; i++) {
+            sequence[i] = readValidColor(scanner, i);
+        }
+
+        return sequence;
+    }
+
+    /**
+     * Leo un color valido para una posicion concreta
+     */
+    private static String readValidColor(Scanner scanner, int position) {
+
+        String color;
+        boolean validColor = false;
+
+        do {
+            System.out.print("Introduce el color para la posicion " + (position + 1) + ": ");
+            color = scanner.nextLine().trim();
+            color = formatColor(color);
+
+            validColor = isValidColor(color);
+
+            if (!validColor) {
+                System.out.println("Color no valido. Solo puedes escribir Azul, Rojo, Verde o Amarillo.");
+            }
+
+        } while (!validColor);
+
+        return color;
+    }
+
+    /**
+     * Compruebo si el color introducido existe dentro de los colores permitidos
+     */
+    private static boolean isValidColor(String color) {
+
+        for (String availableColor : AVAILABLE_COLORS) {
+            if (availableColor.equals(color)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * Formateo el texto para que coincida con el nombre de los colores
+     */
+    private static String formatColor(String color) {
+
+        if (color.isEmpty()) {
+            return color;
+        }
+
+        return color.substring(0, 1).toUpperCase() + color.substring(1).toLowerCase();
+    }
+
+    /**
+     * Cuento las bolas blancas, es decir, los colores bien colocados
+     */
+    private static int countWhiteBalls(String[] secretSequence, String[] playerSequence) {
+
+        int whiteBalls = 0;
+
+        for (int i = 0; i < SEQUENCE_LENGTH; i++) {
+            if (secretSequence[i].equals(playerSequence[i])) {
+                whiteBalls++;
+            }
+        }
+
+        return whiteBalls;
+    }
+
+    /**
+     * Cuento las bolas negras, es decir, los colores correctos pero mal posicionados
+     */
+    private static int countBlackBalls(String[] secretSequence, String[] playerSequence) {
+
+        boolean[] usedSecret = new boolean[SEQUENCE_LENGTH];
+        boolean[] usedPlayer = new boolean[SEQUENCE_LENGTH];
+
+        markWhiteBalls(secretSequence, playerSequence, usedSecret, usedPlayer);
+
+        int blackBalls = 0;
+
+        for (int i = 0; i < SEQUENCE_LENGTH; i++) {
+            if (!usedPlayer[i]) {
+                for (int j = 0; j < SEQUENCE_LENGTH; j++) {
+                    if (!usedSecret[j] && playerSequence[i].equals(secretSequence[j])) {
+                        blackBalls++;
+                        usedSecret[j] = true;
+                        break;
+                    }
+                }
+            }
+        }
+
+        return blackBalls;
+    }
+
+    /**
+     * Marco las posiciones que ya han sido usadas como bolas blancas
+     */
+    private static void markWhiteBalls(String[] secretSequence, String[] playerSequence, boolean[] usedSecret, boolean[] usedPlayer) {
+
+        for (int i = 0; i < SEQUENCE_LENGTH; i++) {
+            if (secretSequence[i].equals(playerSequence[i])) {
+                usedSecret[i] = true;
+                usedPlayer[i] = true;
+            }
+        }
+    }
+
+    /**
+     * Compruebo si el jugador ha ganado la partida
+     */
+    private static boolean hasWon(int whiteBalls) {
+        return whiteBalls == SEQUENCE_LENGTH;
+    }
+
+    /**
+     * Muestro el resultado del intento
+     */
+    private static void showResult(int whiteBalls, int blackBalls) {
+
+        System.out.println("Bolas blancas: " + whiteBalls);
+        System.out.println("Bolas negras: " + blackBalls);
+    }
+
+    /**
+     * Muestro la secuencia final
+     */
+    private static void showSequence(String[] sequence) {
+
+        for (int i = 0; i < sequence.length; i++) {
+            System.out.print(sequence[i]);
+
+            if (i < sequence.length - 1) {
+                System.out.print(", ");
+            }
+        }
+
+        System.out.println();
+    }
+}
